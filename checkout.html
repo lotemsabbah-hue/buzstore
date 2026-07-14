@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>לרכישה | ClearWave</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=Heebo:wght@300;400;500;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo">Clear<span>Wave</span></a>
+    <a href="index.html" class="btn btn-ghost nav-cta">חזרה לאתר</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-hero">
+    <h1>סיכום הזמנה</h1>
+    <p class="lead" style="margin-bottom:4px;">שלב אחרון לפני תשלום מאובטח.</p>
+  </div>
+
+  <div class="order-card">
+    <div class="order-row">
+      <div class="order-thumb">תמונת<br>מוצר</div>
+      <div class="order-info">
+        <div class="name">ClearWave — מנקה משקפיים אולטרסוני</div>
+        <div class="meta">מחיר יחידה: ₪129</div>
+      </div>
+      <div class="qty-stepper">
+        <button id="minus" aria-label="הפחת כמות">–</button>
+        <span id="qty">1</span>
+        <button id="plus" aria-label="הוסף כמות">+</button>
+      </div>
+    </div>
+
+    <div class="order-summary">
+      <div class="summary-row"><span>סכום ביניים</span><span id="subtotal">₪129</span></div>
+      <div class="summary-row"><span>משלוח</span><span>חינם</span></div>
+      <div class="summary-row total"><span>סה״כ לתשלום</span><span id="total">₪129</span></div>
+    </div>
+  </div>
+
+  <div class="form-field" style="margin-top:22px;">
+    <label for="fname">שם מלא</label>
+    <input type="text" id="fname" placeholder="לדוגמה: ישראל ישראלי">
+  </div>
+  <div class="form-field">
+    <label for="fphone">טלפון</label>
+    <input type="tel" id="fphone" placeholder="05X-XXXXXXX">
+  </div>
+  <div class="form-field">
+    <label for="faddress">כתובת למשלוח</label>
+    <input type="text" id="faddress" placeholder="רחוב, מספר, עיר, מיקוד">
+  </div>
+
+  <button id="payBtn" class="btn btn-primary" style="width:100%; margin-top:8px;">מעבר לתשלום מאובטח</button>
+
+  <div class="trust-mini">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 018 0v2"/></svg>
+    התשלום מתבצע בעמוד מאובטח של ספק הסליקה
+  </div>
+
+  <div class="doc-note" style="margin-top:24px;">
+    <b>הערת פיתוח:</b> העמוד הזה כרגע לא מחובר לספק סליקה אמיתי. כדי לחבר תשלום בפועל צריך חשבון אצל ספק כמו Grow / PayPlus / Cardcom / Tranzila / Meshulam, וקישור/API שמתקבל מהם. פרטי הטופס כרגע לא נשמרים בשום מקום — צריך לחבר אותם לשירות אמיתי (טופס Google Forms, גיליון, CRM, או ה-API של ספק הסליקה).
+  </div>
+</div>
+
+<script>
+  let qty = 1;
+  const unitPrice = 129;
+  const qtyEl = document.getElementById('qty');
+  const subtotalEl = document.getElementById('subtotal');
+  const totalEl = document.getElementById('total');
+
+  function render(){
+    qtyEl.textContent = qty;
+    subtotalEl.textContent = '₪' + (qty*unitPrice);
+    totalEl.textContent = '₪' + (qty*unitPrice);
+  }
+  document.getElementById('plus').addEventListener('click', ()=>{ qty++; render(); });
+  document.getElementById('minus').addEventListener('click', ()=>{ if(qty>1){ qty--; render(); } });
+
+  // ============================================================
+  // הגדרה יחידה שצריך לעדכן: קישור לתשלום אצל ספק הסליקה שלך
+  // ============================================================
+  const PAYMENT_LINK = "#";
+
+  document.getElementById('payBtn').addEventListener('click', ()=>{
+    const name = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('fphone').value.trim();
+    const address = document.getElementById('faddress').value.trim();
+    if(!name || !phone || !address){
+      alert('נא למלא שם, טלפון וכתובת למשלוח לפני המעבר לתשלום.');
+      return;
+    }
+    if(PAYMENT_LINK === "#"){
+      alert('כאן ייפתח עמוד התשלום — יש להדביק את קישור הסליקה בקוד (משתנה PAYMENT_LINK בקובץ checkout.html).');
+    } else {
+      window.location.href = PAYMENT_LINK;
+    }
+  });
+</script>
+
+</body>
+</html>

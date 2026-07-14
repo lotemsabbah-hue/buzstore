@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>צור קשר | ClearWave</title>
+<meta name="theme-color" content="#0B1220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=Heebo:wght@300;400;500;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo">Clear<span>Wave</span></a>
+    <a href="checkout.html" class="btn btn-primary nav-cta">לרכישה</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-hero">
+    <h1>צור קשר</h1>
+    <p class="lead">שאלה על ההזמנה, על המוצר, או רוצים לשתף פידבק? נשמח לשמוע.</p>
+  </div>
+
+  <div class="form-field">
+    <label for="cname">שם</label>
+    <input type="text" id="cname" placeholder="השם שלך">
+  </div>
+  <div class="form-field">
+    <label for="cemail">אימייל</label>
+    <input type="email" id="cemail" placeholder="you@example.com">
+  </div>
+  <div class="form-field">
+    <label for="cmsg">הודעה</label>
+    <textarea id="cmsg" placeholder="איך אפשר לעזור?"></textarea>
+  </div>
+  <button id="sendBtn" class="btn btn-primary" style="width:100%;">שליחת הודעה</button>
+
+  <div class="doc-note" style="margin-top:20px;">
+    <b>הערת פיתוח:</b> הטופס כרגע לא מחובר לשום שרת — הוא רק פותח את תוכנת המייל עם ההודעה שמולאה. כדי לקבל פניות ישירות לתיבת המייל/CRM שלך, אפשר לחבר את הטופס לשירות כמו Formspree / Google Forms, או ל-API.
+  </div>
+
+  <div class="contact-alt">
+    <a href="mailto:info@example.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      info@example.com
+    </a>
+    <a href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M21 15a2 2 0 01-2 2H8l-5 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      וואטסאפ עסקי — [להוסיף מספר]
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">Clear<span>Wave</span></div>
+    <div class="foot-links">
+      <a href="returns.html">מדיניות החזרות</a>
+      <a href="terms.html">תקנון האתר</a>
+      <a href="contact.html">צור קשר</a>
+    </div>
+    <div class="foot-note">© 2026 ClearWave · כל הזכויות שמורות</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('sendBtn').addEventListener('click', ()=>{
+    const name = document.getElementById('cname').value.trim();
+    const email = document.getElementById('cemail').value.trim();
+    const msg = document.getElementById('cmsg').value.trim();
+    if(!name || !email || !msg){
+      alert('נא למלא שם, אימייל והודעה.');
+      return;
+    }
+    const subject = encodeURIComponent('פנייה מאתר ClearWave מאת ' + name);
+    const body = encodeURIComponent(msg + '\n\nאימייל ליצירת קשר חוזר: ' + email);
+    window.location.href = `mailto:info@example.com?subject=${subject}&body=${body}`;
+  });
+</script>
+
+</body>
+</html>
