@@ -3,249 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>ClearWave | מנקה המשקפיים האולטרסוני</title>
-<meta name="theme-color" content="#0B1220">
-<meta property="og:title" content="ClearWave - מנקה משקפיים אולטרסוני">
-<meta property="og:description" content="משקפיים נקיים לגמרי תוך 3 דקות, בלי מגע יד.">
+<title>TagAir | עוקב מיקום חכם לאייפון ואנדרואיד</title>
+<meta name="theme-color" content="#15121C">
+<meta property="og:title" content="TagAir - עוקב מיקום חכם">
+<meta property="og:description" content="לא לאבד יותר. עוקב Bluetooth שמתחבר לרשת האיתור של iPhone ו-Android.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=Heebo:wght@300;400;500;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
-<style>
-  /* ===================== TOKENS ===================== */
-  :root{
-    --ink:#0B1220;
-    --panel:#12232B;
-    --panel-2:#0F1B22;
-    --aqua:#8FE3E8;
-    --aqua-dim:#4E8B90;
-    --coral:#FF6B5B;
-    --coral-dim:#D9503F;
-    --fog:#EDF3F4;
-    --slate:#8CA0A6;
-    --line:rgba(237,243,244,0.10);
-    --radius:18px;
-    --maxw:520px;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--ink);
-    color:var(--fog);
-    font-family:'Heebo', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    padding-bottom:78px; /* leave room for sticky CTA */
-    overflow-x:hidden;
-  }
-  h1,h2,h3, .display{
-    font-family:'Rubik', sans-serif;
-    font-weight:900;
-    line-height:1.1;
-    letter-spacing:-0.01em;
-  }
-  .num, .spec-value{ font-family:'Space Grotesk', sans-serif; }
-  a{color:inherit; text-decoration:none;}
-  img{max-width:100%; display:block;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
-  section{padding:64px 0;}
-  .eyebrow{
-    font-family:'Space Grotesk', sans-serif;
-    font-size:12px;
-    letter-spacing:0.14em;
-    color:var(--aqua);
-    text-transform:uppercase;
-    margin-bottom:10px;
-    display:flex; align-items:center; gap:8px;
-  }
-  .eyebrow::before{content:""; width:16px; height:1px; background:var(--aqua);}
-  p.lead{color:var(--slate); font-size:16px; line-height:1.7;}
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding:16px 28px; border-radius:100px; font-weight:700; font-size:16px;
-    cursor:pointer; border:none; transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary{ background:var(--coral); color:#0B1220; }
-  .btn-primary:active{ transform:scale(0.97); }
-  .btn-ghost{ background:transparent; color:var(--fog); border:1px solid var(--line); }
-
-  /* ===================== NAV ===================== */
-  nav{
-    position:sticky; top:0; z-index:40;
-    background:rgba(11,18,32,0.85); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px; }
-  .logo{ font-family:'Rubik'; font-weight:900; font-size:19px; letter-spacing:-0.02em;}
-  .logo span{color:var(--aqua);}
-  .nav-cta{ font-size:13px; padding:10px 18px; }
-
-  /* ===================== HERO ===================== */
-  .hero{ position:relative; padding-top:44px; text-align:center; overflow:hidden;}
-  .ripple-field{
-    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    z-index:0; pointer-events:none;
-  }
-  .ripple{
-    position:absolute; border:1px solid var(--aqua); border-radius:50%; opacity:0;
-    animation:ripple 4.5s ease-out infinite;
-  }
-  .ripple:nth-child(2){ animation-delay:1.1s; }
-  .ripple:nth-child(3){ animation-delay:2.2s; }
-  .ripple:nth-child(4){ animation-delay:3.3s; }
-  @keyframes ripple{
-    0%{ width:40px; height:40px; opacity:0.55; }
-    100%{ width:420px; height:420px; opacity:0; }
-  }
-  .hero-inner{ position:relative; z-index:1; }
-  .hero h1{ font-size:34px; margin-bottom:16px; }
-  .hero h1 em{ font-style:normal; color:var(--aqua); }
-  .hero p.lead{ max-width:380px; margin:0 auto 28px; }
-  .hero-actions{ display:flex; flex-direction:column; gap:12px; align-items:center; margin-bottom:36px;}
-  .hero-price{ font-size:13px; color:var(--slate); }
-  .hero-price b{ color:var(--fog); font-size:15px; }
-
-  .video-frame{
-    position:relative; margin:0 auto; max-width:280px; aspect-ratio:9/16;
-    border-radius:28px; overflow:hidden; border:1px solid var(--line);
-    background:linear-gradient(160deg, var(--panel), var(--panel-2));
-    display:flex; align-items:center; justify-content:center;
-  }
-  .video-frame .ph-label{
-    position:absolute; top:14px; right:14px; left:14px;
-    font-family:'Space Grotesk'; font-size:10px; color:var(--slate);
-    letter-spacing:0.08em; text-transform:uppercase; text-align:center;
-    border:1px dashed var(--line); border-radius:8px; padding:6px 4px;
-  }
-  .play-btn{
-    width:56px; height:56px; border-radius:50%; background:var(--coral);
-    display:flex; align-items:center; justify-content:center; box-shadow:0 8px 30px rgba(255,107,91,0.35);
-  }
-  .play-btn::after{ content:""; width:0; height:0; border-top:9px solid transparent; border-bottom:9px solid transparent; border-left:14px solid #0B1220; margin-right:-3px;}
-
-  /* ===================== TRUST BAR ===================== */
-  .trust{ display:flex; justify-content:space-between; padding:22px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .trust-item{ text-align:center; flex:1; font-size:11px; color:var(--slate); }
-  .trust-item svg{ width:20px; height:20px; margin-bottom:6px; stroke:var(--aqua); }
-
-  /* ===================== PAIN POINTS ===================== */
-  .pain-grid{ display:flex; flex-direction:column; gap:14px; margin-top:28px; }
-  .pain-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:18px; display:flex; gap:14px; align-items:flex-start;
-  }
-  .pain-icon{
-    flex:0 0 auto; width:38px; height:38px; border-radius:10px;
-    background:rgba(143,227,232,0.10); display:flex; align-items:center; justify-content:center;
-  }
-  .pain-icon svg{ width:19px; height:19px; stroke:var(--aqua); fill:none; }
-  .pain-card h3{ font-size:15px; font-weight:700; margin-bottom:4px; font-family:'Heebo';}
-  .pain-card p{ font-size:13.5px; color:var(--slate); line-height:1.6; }
-
-  /* ===================== HOW IT WORKS ===================== */
-  .steps{ margin-top:30px; display:flex; flex-direction:column; gap:0; }
-  .step{ display:flex; gap:18px; padding-bottom:34px; position:relative; }
-  .step:last-child{ padding-bottom:0; }
-  .step:not(:last-child)::before{
-    content:""; position:absolute; right:19px; top:44px; bottom:0; width:1px;
-    background:var(--line);
-  }
-  .step-num{
-    flex:0 0 auto; width:40px; height:40px; border-radius:50%; border:1px solid var(--aqua-dim);
-    display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk'; font-weight:600;
-    color:var(--aqua); font-size:15px; z-index:1; background:var(--ink);
-  }
-  .step h3{ font-size:16px; margin-bottom:4px; }
-  .step p{ font-size:13.5px; color:var(--slate); line-height:1.6; }
-
-  /* ===================== EXPLAINER ===================== */
-  .explainer{
-    background:radial-gradient(circle at 50% 0%, rgba(143,227,232,0.10), transparent 60%), var(--panel-2);
-    border-radius:24px; padding:36px 24px; text-align:center; margin-top:8px;
-    border:1px solid var(--line);
-  }
-  .explainer h2{ font-size:22px; margin-bottom:12px;}
-  .explainer p.lead{ margin:0 auto; max-width:340px; }
-
-  /* ===================== GALLERY ===================== */
-  .gallery-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:26px; }
-  .gallery-grid .ph{ grid-column:span 2; aspect-ratio:16/10; }
-  .ph{
-    background:linear-gradient(150deg, var(--panel), var(--panel-2));
-    border:1px dashed var(--line); border-radius:14px;
-    aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk'; font-size:10.5px; color:var(--slate);
-    text-align:center; padding:10px; letter-spacing:0.03em;
-  }
-
-  /* ===================== SPECS ===================== */
-  .spec-table{ margin-top:26px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);}
-  .spec-row{ display:flex; justify-content:space-between; padding:14px 18px; font-size:14px; }
-  .spec-row:nth-child(odd){ background:var(--panel); }
-  .spec-row:nth-child(even){ background:var(--panel-2); }
-  .spec-row span:first-child{ color:var(--slate); }
-  .spec-value{ font-weight:600; color:var(--aqua); }
-
-  /* ===================== TESTIMONIALS ===================== */
-  .t-scroll{ display:flex; gap:12px; overflow-x:auto; margin:26px -20px 0; padding:0 20px 6px; scroll-snap-type:x mandatory; }
-  .t-card{
-    flex:0 0 82%; scroll-snap-align:start; background:var(--panel); border:1px solid var(--line);
-    border-radius:var(--radius); padding:20px;
-  }
-  .t-stars{ color:var(--coral); font-size:13px; margin-bottom:10px; letter-spacing:2px; }
-  .t-card p{ font-size:13.5px; color:var(--fog); line-height:1.6; margin-bottom:14px; }
-  .t-name{ font-size:12px; color:var(--slate); }
-
-  /* ===================== FAQ ===================== */
-  .faq-item{ border-bottom:1px solid var(--line); }
-  .faq-q{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:18px 2px; cursor:pointer; font-weight:600; font-size:14.5px;
-  }
-  .faq-q::after{ content:"+"; font-size:20px; color:var(--aqua); transition:transform .2s ease; font-weight:400;}
-  .faq-item.open .faq-q::after{ transform:rotate(45deg); }
-  .faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
-  .faq-item.open .faq-a{ max-height:200px; }
-  .faq-a p{ padding:0 2px 18px; font-size:13.5px; color:var(--slate); line-height:1.6; }
-
-  /* ===================== FOOTER ===================== */
-  footer{ padding:44px 0 40px; border-top:1px solid var(--line); text-align:center; }
-  footer .logo{ margin-bottom:14px; }
-  .foot-links{ display:flex; justify-content:center; gap:18px; margin-bottom:18px; flex-wrap:wrap; }
-  .foot-links a{ font-size:12.5px; color:var(--slate); }
-  .foot-note{ font-size:11px; color:var(--slate); opacity:0.7; }
-
-  /* ===================== STICKY CTA ===================== */
-  .sticky-cta{
-    position:fixed; bottom:0; right:0; left:0; z-index:50;
-    background:rgba(11,18,32,0.92); backdrop-filter:blur(10px);
-    border-top:1px solid var(--line);
-    padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:14px;
-  }
-  .sticky-cta .price{ font-family:'Space Grotesk'; font-size:15px; }
-  .sticky-cta .price small{ display:block; font-size:10px; color:var(--slate); font-family:'Heebo'; }
-  .sticky-cta .btn{ padding:13px 24px; font-size:14px; flex:0 0 auto; }
-
-  @media (min-width:540px){
-    .hero h1{ font-size:40px; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=Heebo:wght@300;400;500;700&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <div class="logo">Clear<span>Wave</span></div>
-    <a href="#buy" class="btn btn-primary nav-cta">לרכישה</a>
+    <div class="logo">Tag<span>Air</span></div>
+    <a href="checkout.html" class="btn btn-primary nav-cta">לרכישה</a>
   </div>
 </nav>
 
 <header class="hero">
+  <div class="map-grid"></div>
   <div class="ripple-field">
+    <div class="beacon-pin"><svg viewBox="0 0 24 24"><path d="M12 0C6.5 0 2 4.5 2 10c0 7.5 10 14 10 14s10-6.5 10-14c0-5.5-4.5-10-10-10zm0 13.5A3.5 3.5 0 1112 6.5a3.5 3.5 0 010 7z"/></svg></div>
+    <div class="beacon-dot"></div>
     <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
   </div>
   <div class="wrap hero-inner">
-    <div class="eyebrow">ניקוי אולטרסוני · בלי מגע יד</div>
-    <h1>משקפיים נקיים<br><em>עד הפינה האחרונה,</em><br>תוך 3 דקות</h1>
-    <p class="lead">גלי אולטרסאונד שוברים לכלוך, שומן ואבק מכל חריץ בעדשה ובמסגרת — בלי לגעת, בלי לשרוט.</p>
+    <div class="eyebrow">עוקב מיקום חכם · תואם iPhone ו-Android</div>
+    <h1>המפתחות, התיק, הארנק —<br><em>תמיד יודעים איפה.</em></h1>
+    <p class="lead">תג Bluetooth זעיר שמתחבר לרשת האיתור של iPhone ו-Android, ומראה לך על המפה בדיוק איפה נמצא הדבר האחרון שאיבדת.</p>
 
     <div class="video-frame">
       <div class="ph-label">כאן ייכנס וידאו הדגמה של המוצר (MP4 / קישור)</div>
@@ -253,44 +39,46 @@
     </div>
 
     <div class="hero-actions" style="margin-top:28px;">
-      <a href="#buy" class="btn btn-primary" style="width:100%; max-width:280px;">לרכישה עכשיו</a>
-      <div class="hero-price">מחיר השקה: <b>₪129</b> · <span style="text-decoration:line-through;">₪199</span></div>
+      <a href="checkout.html" class="btn btn-primary" style="width:100%; max-width:280px;">לרכישה עכשיו</a>
+      <div class="hero-price">מחיר השקה: <b>₪50</b> · <span style="text-decoration:line-through;">₪79</span></div>
     </div>
+
+    <div class="coord-chip mono"><span class="dot"></span>אותר לאחרונה · לפני 2 דקות</div>
   </div>
 </header>
 
 <div class="wrap">
   <div class="trust">
     <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M5 12l5 5L20 7"/></svg>
-      אחריות שנה
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M9 18h6"/></svg>
+      תואם iPhone ו-Android
     </div>
     <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a4 4 0 018 0v2"/></svg>
-      תשלום מאובטח
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+      סוללה לשנה שלמה
     </div>
     <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 7h13v9H3zM16 10h4l2 3v3h-6z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/></svg>
-      משלוח עד הבית
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 3c3 3 6 6 6 10a6 6 0 01-12 0c0-4 3-7 6-10z"/></svg>
+      עמיד במים
     </div>
   </div>
 </div>
 
 <section class="wrap" id="problem">
   <div class="eyebrow">מוכר לך?</div>
-  <h2 style="font-size:24px;">ניקוי משקפיים ביד<br>אף פעם לא באמת מנקה</h2>
+  <h2 style="font-size:24px;">המפתחות תמיד נעלמים<br>בדיוק כשממהרים</h2>
   <div class="pain-grid">
     <div class="pain-card">
-      <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M3 3l18 18M8 8a5 5 0 007 7"/></svg></div>
-      <div><h3>שריטות מצטברות</h3><p>ניגוב עם חולצה או טישו משאיר שריטות זעירות שפוגעות בראייה עם הזמן.</p></div>
+      <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="5"/><path d="M11.5 11.5L21 21M15 15l3 3"/></svg></div>
+      <div><h3>חיפוש בוקר קבוע</h3><p>עוד בוקר שמתחיל בחיפוש היסטרי אחרי המפתחות מתחת לכריות ובתיקים.</p></div>
     </div>
     <div class="pain-card">
-      <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></div>
-      <div><h3>לכלוך בחריצים</h3><p>אבק ושומן נתקעים בין העדשה למסגרת ובברגים — אצבע ומטלית לא מגיעות לשם.</p></div>
+      <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16v12a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 7V5a4 4 0 018 0v2"/></svg></div>
+      <div><h3>תיק שנשכח מאחור</h3><p>תיק, מזוודה או ז'קט שנשארו במונית או במסעדה — וגילוי מאוחר מדי.</p></div>
     </div>
     <div class="pain-card">
-      <div class="pain-icon"><svg viewBox="0 0 24 24"><path d="M12 2v6M12 16v6M2 12h6M16 12h6"/></svg></div>
-      <div><h3>לוקח זמן, כל יום</h3><p>ניקוי ידני מדויק אורך דקות ארוכות — ורוב הפעמים עדיין יוצא מרוח.</p></div>
+      <div class="pain-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 21c-4-4-7-7.5-7-11a7 7 0 0114 0c0 3.5-3 7-7 11z"/></svg></div>
+      <div><h3>חיה מבריחה</h3><p>כלב או חתול שהתחמקו מהחצר, ואין שום דרך לדעת לאיזה כיוון פנו.</p></div>
     </div>
   </div>
 </section>
@@ -301,15 +89,15 @@
   <div class="steps">
     <div class="step">
       <div class="step-num num">01</div>
-      <div><h3>ממלאים מים</h3><p>מוסיפים מי ברז רגילים עד לקו המילוי בתא הניקוי.</p></div>
+      <div><h3>מחברים לאפליקציה</h3><p>סריקה מהירה וחיבור לרשת האיתור של iPhone או Android תוך פחות מדקה.</p></div>
     </div>
     <div class="step">
       <div class="step-num num">02</div>
-      <div><h3>מכניסים משקפיים</h3><p>מניחים את המשקפיים בסל הפנימי — מתאים גם לעדשות מגע ותכשיטים עדינים.</p></div>
+      <div><h3>מצמידים לחפץ</h3><p>טבעת מובנית שמתאימה למחזיק מפתחות, תיק, קולר לכלב או ארנק.</p></div>
     </div>
     <div class="step">
       <div class="step-num num">03</div>
-      <div><h3>לוחצים כפתור</h3><p>שלוש דקות של גלי אולטרסאונד, והמשקפיים יוצאים נקיים כמו חדשים.</p></div>
+      <div><h3>עוקבים במפה</h3><p>מיקום מדויק בזמן אמת, ואפשרות להשמיע צליל חיפוש ישירות מהטלפון.</p></div>
     </div>
   </div>
 </section>
@@ -317,8 +105,8 @@
 <section class="wrap" id="tech">
   <div class="explainer">
     <div class="eyebrow" style="justify-content:center;">הטכנולוגיה</div>
-    <h2>גלי קול שמנקים<br>במקום שאצבע לא מגיעה</h2>
-    <p class="lead">תדר אולטרסוני יוצר מיליוני בועיות זעירות במים, שמתפוצצות בעדינות ומנתקות לכלוך מכל משטח — ללא שפשוף, ללא לחץ, ללא סיכון לשריטה.</p>
+    <h2>רשת של מאות מיליוני<br>מכשירים עוזרת לאתר</h2>
+    <p class="lead">התג מתחבר לרשת האיתור האנונימית של אייפון ואנדרואיד — כל מכשיר בסביבה עוזר לאתר את המיקום שלו ברקע, בלי לפגוע בפרטיות של אף אחד ובלי שהמכשיר שלך יידע על כך.</p>
   </div>
 </section>
 
@@ -327,11 +115,11 @@
   <h2 style="font-size:24px; margin-bottom:6px;">המוצר מכל זווית</h2>
   <p class="lead" style="margin-bottom:6px;">להחליף את תיבות ה-placeholder בתמונות ובסרטון האמיתיים של המוצר.</p>
   <div class="gallery-grid">
-    <div class="ph">תמונת הירו — המכשיר על שולחן, אור טבעי</div>
-    <div class="ph">המכשיר פתוח + סל ומים</div>
-    <div class="ph">משקפיים בתוך המכשיר</div>
-    <div class="ph">תקריב על הפאנל/כפתור</div>
-    <div class="ph">המכשיר לצד משקפיים נקיות — לפני/אחרי</div>
+    <div class="ph">תמונת הירו — התג על שולחן, אור טבעי</div>
+    <div class="ph">התג מוצמד למחזיק מפתחות</div>
+    <div class="ph">תקריב על גודל התג ליד מטבע</div>
+    <div class="ph">מסך האפליקציה עם מיקום על המפה</div>
+    <div class="ph">התג על קולר כלב / בתיק</div>
   </div>
 </section>
 
@@ -339,11 +127,11 @@
   <div class="eyebrow">מפרט</div>
   <h2 style="font-size:24px;">נתונים טכניים</h2>
   <div class="spec-table">
-    <div class="spec-row"><span>זמן ניקוי</span><span class="spec-value">3 דקות</span></div>
-    <div class="spec-row"><span>נפח מים</span><span class="spec-value">45 מ״ל</span></div>
-    <div class="spec-row"><span>הפעלה</span><span class="spec-value">USB / סוללה נטענת</span></div>
-    <div class="spec-row"><span>משקל</span><span class="spec-value">180 גרם</span></div>
-    <div class="spec-row"><span>מתאים גם ל</span><span class="spec-value">תכשיטים, שעונים, עדשות מגע</span></div>
+    <div class="spec-row"><span>טווח בלוטות'</span><span class="spec-value">עד 120 מ׳</span></div>
+    <div class="spec-row"><span>חיי סוללה</span><span class="spec-value">כשנה</span></div>
+    <div class="spec-row"><span>עמידות</span><span class="spec-value">IP67 — עמיד במים ואבק</span></div>
+    <div class="spec-row"><span>משקל</span><span class="spec-value">9 גרם</span></div>
+    <div class="spec-row"><span>תאימות</span><span class="spec-value">iOS 14.5+ / Android 9+</span></div>
   </div>
 </section>
 
@@ -355,17 +143,17 @@
   <div class="t-scroll wrap" style="padding-right:20px;">
     <div class="t-card">
       <div class="t-stars">★★★★★</div>
-      <p>"לא האמנתי כמה לכלוך היה תקוע בחריצים. אחרי 3 דקות המשקפיים נראו כמו חדשות."</p>
+      <p>"מצאתי את המפתחות תוך שנייה במקום לחפש עשרים דקות. שינה לי את השגרה."</p>
       <div class="t-name">— שם לקוח, עיר</div>
     </div>
     <div class="t-card">
       <div class="t-stars">★★★★★</div>
-      <p>"פשוט, מהיר, ובלי סיכון לשרוט את העדשות היקרות שלי. קונה כמתנה לכל המשפחה."</p>
+      <p>"שמתי אחד בתיק העבודה ואחד על קולר הכלב. שקט נפשי אמיתי."</p>
       <div class="t-name">— שם לקוח, עיר</div>
     </div>
     <div class="t-card">
       <div class="t-stars">★★★★★</div>
-      <p>"שדרוג קטן לשגרת הבוקר שעושה הבדל גדול. ממליצה בחום."</p>
+      <p>"התקנה קלה, האפליקציה פשוטה, והמיקום מדויק להפליא."</p>
       <div class="t-name">— שם לקוח, עיר</div>
     </div>
   </div>
@@ -376,61 +164,44 @@
   <h2 style="font-size:24px; margin-bottom:8px;">כל מה שרציתם לדעת</h2>
   <div class="faq-list">
     <div class="faq-item">
-      <div class="faq-q">האם זה בטוח לעדשות עם ציפוי מיוחד?</div>
-      <div class="faq-a"><p>כן — הניקוי מבוסס על גלי קול ומים בלבד, ללא שפשוף פיזי, ולכן בטוח לרוב הציפויים כולל אנטי־רפלקס.</p></div>
+      <div class="faq-q">האם זה מוצר מקורי של Apple?</div>
+      <div class="faq-a"><p>לא. TagAir הוא תג מתוצרת צד שלישי, לא קשור ולא מאושר על ידי Apple Inc. או Google LLC, שמתחבר לרשתות האיתור הציבוריות שלהן.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">זה עובד גם על אנדרואיד?</div>
+      <div class="faq-a"><p>כן — למשתמשי iPhone החיבור הוא לרשת Find My של אפל, ולמשתמשי אנדרואיד לרשת Find My Device של גוגל.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">כמה זמן מחזיקה הסוללה?</div>
+      <div class="faq-a"><p>כשנה של שימוש רגיל. הסוללה ניתנת להחלפה, כך שאין צורך להיפרד מהתג.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-q">כמה זמן לוקח משלוח?</div>
-      <div class="faq-a"><p>[להשלים זמני משלוח בפועל, לדוגמה: 3–5 ימי עסקים בישראל]</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">יש אחריות?</div>
-      <div class="faq-a"><p>המוצר מגיע עם אחריות יצרן לשנה מיום הרכישה.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">אפשר להחזיר אם לא מתאים?</div>
-      <div class="faq-a"><p>[להשלים מדיניות החזרות בפועל בהתאם לחוק הגנת הצרכן]</p></div>
+      <div class="faq-a"><p>[להשלים זמני משלוח בפועל, לדוגמה: 3–5 ימי עסקים]</p></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="logo">Clear<span>Wave</span></div>
+    <div class="logo">Tag<span>Air</span></div>
     <div class="foot-links">
-      <a href="#">מדיניות החזרות</a>
-      <a href="#">תקנון האתר</a>
-      <a href="#">צור קשר</a>
+      <a href="returns.html">מדיניות החזרות</a>
+      <a href="terms.html">תקנון האתר</a>
+      <a href="contact.html">צור קשר</a>
       <a href="#">אינסטגרם</a>
       <a href="#">טיקטוק</a>
     </div>
-    <div class="foot-note">© 2026 ClearWave · כל הזכויות שמורות</div>
+    <div class="foot-note">© 2026 TagAir · כל הזכויות שמורות<br>TagAir אינו מוצר של Apple Inc. או Google LLC ואינו מאושר או ממומן על ידן.</div>
   </div>
 </footer>
 
-<div class="sticky-cta" id="buy">
-  <div class="price">₪129<small>כולל משלוח</small></div>
-  <a class="btn btn-primary" id="buyBtn" href="#">לרכישה מאובטחת</a>
+<div class="sticky-cta">
+  <div class="price">₪50<small>כולל משלוח</small></div>
+  <a class="btn btn-primary" href="checkout.html">לרכישה מאובטחת</a>
 </div>
 
 <script>
-  // ============================================================
-  // הגדרה יחידה שצריך לעדכן: קישור לתשלום (ראו הסבר בהודעה)
-  // ============================================================
-  const PAYMENT_LINK = "#";
-  document.querySelectorAll('#buyBtn, .nav-cta, a[href="#buy"]').forEach(el=>{
-    if(el.id === 'buyBtn'){
-      el.addEventListener('click', (e)=>{
-        e.preventDefault();
-        if(PAYMENT_LINK === "#"){
-          alert("כאן יפתח דף התשלום — יש להדביק את קישור הסליקה בקוד (משתנה PAYMENT_LINK).");
-        } else {
-          window.location.href = PAYMENT_LINK;
-        }
-      });
-    }
-  });
-
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(q=>{
     q.addEventListener('click', ()=>{

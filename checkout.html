@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>לרכישה | ClearWave</title>
+<title>לרכישה | TagAir</title>
 <meta name="theme-color" content="#0B1220">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=Heebo:wght@300;400;500;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;900&family=Heebo:wght@300;400;500;700&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <nav>
   <div class="wrap">
-    <a href="index.html" class="logo">Clear<span>Wave</span></a>
+    <a href="index.html" class="logo">Tag<span>Air</span></a>
     <a href="index.html" class="btn btn-ghost nav-cta">חזרה לאתר</a>
   </div>
 </nav>
@@ -29,8 +29,8 @@
     <div class="order-row">
       <div class="order-thumb">תמונת<br>מוצר</div>
       <div class="order-info">
-        <div class="name">ClearWave — מנקה משקפיים אולטרסוני</div>
-        <div class="meta">מחיר יחידה: ₪129</div>
+        <div class="name">TagAir — עוקב מיקום חכם</div>
+        <div class="meta">מחיר יחידה: ₪50</div>
       </div>
       <div class="qty-stepper">
         <button id="minus" aria-label="הפחת כמות">–</button>
@@ -40,23 +40,53 @@
     </div>
 
     <div class="order-summary">
-      <div class="summary-row"><span>סכום ביניים</span><span id="subtotal">₪129</span></div>
+      <div class="summary-row"><span>סכום ביניים</span><span id="subtotal">₪50</span></div>
       <div class="summary-row"><span>משלוח</span><span>חינם</span></div>
-      <div class="summary-row total"><span>סה״כ לתשלום</span><span id="total">₪129</span></div>
+      <div class="summary-row total"><span>סה״כ לתשלום</span><span id="total">₪50</span></div>
     </div>
   </div>
 
-  <div class="form-field" style="margin-top:22px;">
+  <div class="page-hero" style="padding-top:26px; padding-bottom:0;">
+    <h1 style="font-size:18px; margin-bottom:4px;">פרטי משלוח</h1>
+  </div>
+
+  <div class="form-field" style="margin-top:14px;">
     <label for="fname">שם מלא</label>
-    <input type="text" id="fname" placeholder="לדוגמה: ישראל ישראלי">
+    <input type="text" id="fname" placeholder="לדוגמה: ישראל ישראלי" autocomplete="name">
+  </div>
+  <div class="form-grid-2">
+    <div class="form-field">
+      <label for="fphone">טלפון</label>
+      <input type="tel" id="fphone" placeholder="05X-XXXXXXX" autocomplete="tel">
+    </div>
+    <div class="form-field">
+      <label for="femail">אימייל</label>
+      <input type="email" id="femail" placeholder="you@example.com" autocomplete="email">
+    </div>
+  </div>
+  <div class="form-grid-2">
+    <div class="form-field">
+      <label for="fcity">עיר</label>
+      <input type="text" id="fcity" placeholder="לדוגמה: תל אביב" autocomplete="address-level2">
+    </div>
+    <div class="form-field">
+      <label for="fzip">מיקוד</label>
+      <input type="text" id="fzip" placeholder="לדוגמה: 6100000" autocomplete="postal-code">
+    </div>
+  </div>
+  <div class="form-grid-2">
+    <div class="form-field">
+      <label for="fstreet">רחוב ומספר בית</label>
+      <input type="text" id="fstreet" placeholder="לדוגמה: הרצל 12" autocomplete="address-line1">
+    </div>
+    <div class="form-field">
+      <label for="fapt">דירה / כניסה (לא חובה)</label>
+      <input type="text" id="fapt" placeholder="לדוגמה: קומה 3, דירה 5" autocomplete="address-line2">
+    </div>
   </div>
   <div class="form-field">
-    <label for="fphone">טלפון</label>
-    <input type="tel" id="fphone" placeholder="05X-XXXXXXX">
-  </div>
-  <div class="form-field">
-    <label for="faddress">כתובת למשלוח</label>
-    <input type="text" id="faddress" placeholder="רחוב, מספר, עיר, מיקוד">
+    <label for="fnotes">הערות למשלוח (לא חובה)</label>
+    <textarea id="fnotes" placeholder="קוד לכניסה לבניין, שעות נוחות למשלוח וכו׳" style="min-height:70px;"></textarea>
   </div>
 
   <button id="payBtn" class="btn btn-primary" style="width:100%; margin-top:8px;">מעבר לתשלום מאובטח</button>
@@ -73,7 +103,7 @@
 
 <script>
   let qty = 1;
-  const unitPrice = 129;
+  const unitPrice = 50;
   const qtyEl = document.getElementById('qty');
   const subtotalEl = document.getElementById('subtotal');
   const totalEl = document.getElementById('total');
@@ -83,6 +113,7 @@
     subtotalEl.textContent = '₪' + (qty*unitPrice);
     totalEl.textContent = '₪' + (qty*unitPrice);
   }
+  render();
   document.getElementById('plus').addEventListener('click', ()=>{ qty++; render(); });
   document.getElementById('minus').addEventListener('click', ()=>{ if(qty>1){ qty--; render(); } });
 
@@ -92,11 +123,17 @@
   const PAYMENT_LINK = "#";
 
   document.getElementById('payBtn').addEventListener('click', ()=>{
-    const name = document.getElementById('fname').value.trim();
-    const phone = document.getElementById('fphone').value.trim();
-    const address = document.getElementById('faddress').value.trim();
-    if(!name || !phone || !address){
-      alert('נא למלא שם, טלפון וכתובת למשלוח לפני המעבר לתשלום.');
+    const required = {
+      'שם מלא': document.getElementById('fname').value.trim(),
+      'טלפון': document.getElementById('fphone').value.trim(),
+      'אימייל': document.getElementById('femail').value.trim(),
+      'עיר': document.getElementById('fcity').value.trim(),
+      'מיקוד': document.getElementById('fzip').value.trim(),
+      'רחוב ומספר בית': document.getElementById('fstreet').value.trim(),
+    };
+    const missing = Object.entries(required).filter(([k,v])=>!v).map(([k])=>k);
+    if(missing.length){
+      alert('נא למלא: ' + missing.join(', '));
       return;
     }
     if(PAYMENT_LINK === "#"){
